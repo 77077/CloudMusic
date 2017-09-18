@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lanqiao.dao.AddressDao">
+  <resultMap id="AddressResultMap" type="org.lanqiao.entity.Address">
+    <id column="ADDRESS_ID" jdbcType="NUMERIC" property="addressId" />
+    <result column="PROVINCE" jdbcType="NVARCHAR" property="province" />
+    <result column="CITY" jdbcType="NVARCHAR" property="city" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ADDRESS_ID, PROVINCE, CITY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="AddressResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADDRESS
+    where ADDRESS_ID = #{addressId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ADDRESS
+    where ADDRESS_ID = #{addressId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="org.lanqiao.entity.Address">
+    insert into ADDRESS (ADDRESS_ID, PROVINCE, CITY
+      )
+    values (#{addressId,jdbcType=NUMERIC}, #{province,jdbcType=NVARCHAR}, #{city,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.lanqiao.entity.Address">
+    insert into ADDRESS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        ADDRESS_ID,
+      </if>
+      <if test="province != null">
+        PROVINCE,
+      </if>
+      <if test="city != null">
+        CITY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addressId != null">
+        #{addressId,jdbcType=NUMERIC},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=NVARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lanqiao.entity.Address">
+    update ADDRESS
+    <set>
+      <if test="province != null">
+        PROVINCE = #{province,jdbcType=NVARCHAR},
+      </if>
+      <if test="city != null">
+        CITY = #{city,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where ADDRESS_ID = #{addressId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lanqiao.entity.Address">
+    update ADDRESS
+    set PROVINCE = #{province,jdbcType=NVARCHAR},
+      CITY = #{city,jdbcType=NVARCHAR}
+    where ADDRESS_ID = #{addressId,jdbcType=NUMERIC}
+  </update>
+</mapper>

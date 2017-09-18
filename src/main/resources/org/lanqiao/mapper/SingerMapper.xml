@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lanqiao.dao.SingerDao">
+  <resultMap id="SingerResultMap" type="org.lanqiao.entity.Singer">
+    <id column="SINGER_ID" jdbcType="NUMERIC" property="singerId" />
+    <result column="SINGER_NAME" jdbcType="NVARCHAR" property="singerName" />
+    <result column="SINGER_INFO" jdbcType="NVARCHAR" property="singerInfo" />
+    <result column="SINGER_IMAGE" jdbcType="NVARCHAR" property="singerImage" />
+    <result column="SINGER_AREA_ID" jdbcType="NUMERIC" property="singerAreaId" />
+    <result column="SINGER_KIND_ID" jdbcType="NUMERIC" property="singerKindId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SINGER_ID, SINGER_NAME, SINGER_INFO, SINGER_IMAGE, SINGER_AREA_ID, SINGER_KIND_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="SingerResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SINGER
+    where SINGER_ID = #{singerId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from SINGER
+    where SINGER_ID = #{singerId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="org.lanqiao.entity.Singer">
+    insert into SINGER (SINGER_ID, SINGER_NAME, SINGER_INFO, 
+      SINGER_IMAGE, SINGER_AREA_ID, SINGER_KIND_ID
+      )
+    values (#{singerId,jdbcType=NUMERIC}, #{singerName,jdbcType=NVARCHAR}, #{singerInfo,jdbcType=NVARCHAR}, 
+      #{singerImage,jdbcType=NVARCHAR}, #{singerAreaId,jdbcType=NUMERIC}, #{singerKindId,jdbcType=NUMERIC}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.lanqiao.entity.Singer">
+    insert into SINGER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="singerId != null">
+        SINGER_ID,
+      </if>
+      <if test="singerName != null">
+        SINGER_NAME,
+      </if>
+      <if test="singerInfo != null">
+        SINGER_INFO,
+      </if>
+      <if test="singerImage != null">
+        SINGER_IMAGE,
+      </if>
+      <if test="singerAreaId != null">
+        SINGER_AREA_ID,
+      </if>
+      <if test="singerKindId != null">
+        SINGER_KIND_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="singerId != null">
+        #{singerId,jdbcType=NUMERIC},
+      </if>
+      <if test="singerName != null">
+        #{singerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="singerInfo != null">
+        #{singerInfo,jdbcType=NVARCHAR},
+      </if>
+      <if test="singerImage != null">
+        #{singerImage,jdbcType=NVARCHAR},
+      </if>
+      <if test="singerAreaId != null">
+        #{singerAreaId,jdbcType=NUMERIC},
+      </if>
+      <if test="singerKindId != null">
+        #{singerKindId,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lanqiao.entity.Singer">
+    update SINGER
+    <set>
+      <if test="singerName != null">
+        SINGER_NAME = #{singerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="singerInfo != null">
+        SINGER_INFO = #{singerInfo,jdbcType=NVARCHAR},
+      </if>
+      <if test="singerImage != null">
+        SINGER_IMAGE = #{singerImage,jdbcType=NVARCHAR},
+      </if>
+      <if test="singerAreaId != null">
+        SINGER_AREA_ID = #{singerAreaId,jdbcType=NUMERIC},
+      </if>
+      <if test="singerKindId != null">
+        SINGER_KIND_ID = #{singerKindId,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where SINGER_ID = #{singerId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lanqiao.entity.Singer">
+    update SINGER
+    set SINGER_NAME = #{singerName,jdbcType=NVARCHAR},
+      SINGER_INFO = #{singerInfo,jdbcType=NVARCHAR},
+      SINGER_IMAGE = #{singerImage,jdbcType=NVARCHAR},
+      SINGER_AREA_ID = #{singerAreaId,jdbcType=NUMERIC},
+      SINGER_KIND_ID = #{singerKindId,jdbcType=NUMERIC}
+    where SINGER_ID = #{singerId,jdbcType=NUMERIC}
+  </update>
+</mapper>

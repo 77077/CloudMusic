@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lanqiao.dao.SingerAreaDao">
+  <resultMap id="SingerAreaResultMap" type="org.lanqiao.entity.SingerArea">
+    <id column="SINGER_AREA_ID" jdbcType="NUMERIC" property="singerAreaId" />
+    <result column="SINGER_AREA" jdbcType="NVARCHAR" property="singerArea" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SINGER_AREA_ID, SINGER_AREA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="SingerAreaResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SINGERAREA
+    where SINGER_AREA_ID = #{singerAreaId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from SINGERAREA
+    where SINGER_AREA_ID = #{singerAreaId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="org.lanqiao.entity.SingerArea">
+    insert into SINGERAREA (SINGER_AREA_ID, SINGER_AREA)
+    values (#{singerAreaId,jdbcType=NUMERIC}, #{singerArea,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.lanqiao.entity.SingerArea">
+    insert into SINGERAREA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="singerAreaId != null">
+        SINGER_AREA_ID,
+      </if>
+      <if test="singerArea != null">
+        SINGER_AREA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="singerAreaId != null">
+        #{singerAreaId,jdbcType=NUMERIC},
+      </if>
+      <if test="singerArea != null">
+        #{singerArea,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lanqiao.entity.SingerArea">
+    update SINGERAREA
+    <set>
+      <if test="singerArea != null">
+        SINGER_AREA = #{singerArea,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where SINGER_AREA_ID = #{singerAreaId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lanqiao.entity.SingerArea">
+    update SINGERAREA
+    set SINGER_AREA = #{singerArea,jdbcType=NVARCHAR}
+    where SINGER_AREA_ID = #{singerAreaId,jdbcType=NUMERIC}
+  </update>
+</mapper>

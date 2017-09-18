@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lanqiao.dao.MusicDao">
+  <resultMap id="MusicResultMap" type="org.lanqiao.entity.Music">
+    <id column="MUSIC_ID" jdbcType="NUMERIC" property="musicId" />
+    <result column="MUSIC_NAME" jdbcType="NVARCHAR" property="musicName" />
+    <result column="SINGER_ID" jdbcType="NUMERIC" property="singerId" />
+    <result column="MUSIC_STAR" jdbcType="NUMERIC" property="musicStar" />
+    <result column="MUSIC_PATH" jdbcType="NVARCHAR" property="musicPath" />
+    <result column="LANGUAGE_ID" jdbcType="NUMERIC" property="languageId" />
+    <result column="STYLE_ID" jdbcType="NUMERIC" property="styleId" />
+    <result column="MUSIC_IMAGE" jdbcType="NVARCHAR" property="musicImage" />
+    <result column="MUSIC_LRC" jdbcType="NVARCHAR" property="musicLrc" />
+    <result column="MUSIC_TIME" jdbcType="NUMERIC" property="musicTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MUSIC_ID, MUSIC_NAME, SINGER_ID, MUSIC_STAR, MUSIC_PATH, LANGUAGE_ID, STYLE_ID, MUSIC_IMAGE, 
+    MUSIC_LRC, MUSIC_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="MusicResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MUSIC
+    where MUSIC_ID = #{musicId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from MUSIC
+    where MUSIC_ID = #{musicId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="org.lanqiao.entity.Music">
+    insert into MUSIC (MUSIC_ID, MUSIC_NAME, SINGER_ID, 
+      MUSIC_STAR, MUSIC_PATH, LANGUAGE_ID, 
+      STYLE_ID, MUSIC_IMAGE, MUSIC_LRC, 
+      MUSIC_TIME)
+    values (#{musicId,jdbcType=NUMERIC}, #{musicName,jdbcType=NVARCHAR}, #{singerId,jdbcType=NUMERIC}, 
+      #{musicStar,jdbcType=NUMERIC}, #{musicPath,jdbcType=NVARCHAR}, #{languageId,jdbcType=NUMERIC}, 
+      #{styleId,jdbcType=NUMERIC}, #{musicImage,jdbcType=NVARCHAR}, #{musicLrc,jdbcType=NVARCHAR}, 
+      #{musicTime,jdbcType=NUMERIC})
+  </insert>
+  <insert id="insertSelective" parameterType="org.lanqiao.entity.Music">
+    insert into MUSIC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="musicId != null">
+        MUSIC_ID,
+      </if>
+      <if test="musicName != null">
+        MUSIC_NAME,
+      </if>
+      <if test="singerId != null">
+        SINGER_ID,
+      </if>
+      <if test="musicStar != null">
+        MUSIC_STAR,
+      </if>
+      <if test="musicPath != null">
+        MUSIC_PATH,
+      </if>
+      <if test="languageId != null">
+        LANGUAGE_ID,
+      </if>
+      <if test="styleId != null">
+        STYLE_ID,
+      </if>
+      <if test="musicImage != null">
+        MUSIC_IMAGE,
+      </if>
+      <if test="musicLrc != null">
+        MUSIC_LRC,
+      </if>
+      <if test="musicTime != null">
+        MUSIC_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="musicId != null">
+        #{musicId,jdbcType=NUMERIC},
+      </if>
+      <if test="musicName != null">
+        #{musicName,jdbcType=NVARCHAR},
+      </if>
+      <if test="singerId != null">
+        #{singerId,jdbcType=NUMERIC},
+      </if>
+      <if test="musicStar != null">
+        #{musicStar,jdbcType=NUMERIC},
+      </if>
+      <if test="musicPath != null">
+        #{musicPath,jdbcType=NVARCHAR},
+      </if>
+      <if test="languageId != null">
+        #{languageId,jdbcType=NUMERIC},
+      </if>
+      <if test="styleId != null">
+        #{styleId,jdbcType=NUMERIC},
+      </if>
+      <if test="musicImage != null">
+        #{musicImage,jdbcType=NVARCHAR},
+      </if>
+      <if test="musicLrc != null">
+        #{musicLrc,jdbcType=NVARCHAR},
+      </if>
+      <if test="musicTime != null">
+        #{musicTime,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lanqiao.entity.Music">
+    update MUSIC
+    <set>
+      <if test="musicName != null">
+        MUSIC_NAME = #{musicName,jdbcType=NVARCHAR},
+      </if>
+      <if test="singerId != null">
+        SINGER_ID = #{singerId,jdbcType=NUMERIC},
+      </if>
+      <if test="musicStar != null">
+        MUSIC_STAR = #{musicStar,jdbcType=NUMERIC},
+      </if>
+      <if test="musicPath != null">
+        MUSIC_PATH = #{musicPath,jdbcType=NVARCHAR},
+      </if>
+      <if test="languageId != null">
+        LANGUAGE_ID = #{languageId,jdbcType=NUMERIC},
+      </if>
+      <if test="styleId != null">
+        STYLE_ID = #{styleId,jdbcType=NUMERIC},
+      </if>
+      <if test="musicImage != null">
+        MUSIC_IMAGE = #{musicImage,jdbcType=NVARCHAR},
+      </if>
+      <if test="musicLrc != null">
+        MUSIC_LRC = #{musicLrc,jdbcType=NVARCHAR},
+      </if>
+      <if test="musicTime != null">
+        MUSIC_TIME = #{musicTime,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where MUSIC_ID = #{musicId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lanqiao.entity.Music">
+    update MUSIC
+    set MUSIC_NAME = #{musicName,jdbcType=NVARCHAR},
+      SINGER_ID = #{singerId,jdbcType=NUMERIC},
+      MUSIC_STAR = #{musicStar,jdbcType=NUMERIC},
+      MUSIC_PATH = #{musicPath,jdbcType=NVARCHAR},
+      LANGUAGE_ID = #{languageId,jdbcType=NUMERIC},
+      STYLE_ID = #{styleId,jdbcType=NUMERIC},
+      MUSIC_IMAGE = #{musicImage,jdbcType=NVARCHAR},
+      MUSIC_LRC = #{musicLrc,jdbcType=NVARCHAR},
+      MUSIC_TIME = #{musicTime,jdbcType=NUMERIC}
+    where MUSIC_ID = #{musicId,jdbcType=NUMERIC}
+  </update>
+</mapper>

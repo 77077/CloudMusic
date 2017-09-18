@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lanqiao.dao.CommentDao">
+  <resultMap id="CommentResultMap" type="org.lanqiao.entity.Comment">
+    <id column="COMMENT_ID" jdbcType="NUMERIC" property="commentId" />
+    <result column="USER_ID" jdbcType="NUMERIC" property="userId" />
+    <result column="MUSIC_ID" jdbcType="NUMERIC" property="musicId" />
+    <result column="COMMENT_TIME" jdbcType="DATE" property="commentTime" />
+    <result column="COMMENT_CONTENT" jdbcType="NVARCHAR" property="commentContent" />
+    <result column="COMMENT_STAR" jdbcType="NUMERIC" property="commentStar" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COMMENT_ID, USER_ID, MUSIC_ID, COMMENT_TIME, COMMENT_CONTENT, COMMENT_STAR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="CommentResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from COMMENTS
+    where COMMENT_ID = #{commentId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from COMMENTS
+    where COMMENT_ID = #{commentId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="org.lanqiao.entity.Comment">
+    insert into COMMENTS (COMMENT_ID, USER_ID, MUSIC_ID, 
+      COMMENT_TIME, COMMENT_CONTENT, COMMENT_STAR
+      )
+    values (#{commentId,jdbcType=NUMERIC}, #{userId,jdbcType=NUMERIC}, #{musicId,jdbcType=NUMERIC}, 
+      #{commentTime,jdbcType=DATE}, #{commentContent,jdbcType=NVARCHAR}, #{commentStar,jdbcType=NUMERIC}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.lanqiao.entity.Comment">
+    insert into COMMENTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentId != null">
+        COMMENT_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="musicId != null">
+        MUSIC_ID,
+      </if>
+      <if test="commentTime != null">
+        COMMENT_TIME,
+      </if>
+      <if test="commentContent != null">
+        COMMENT_CONTENT,
+      </if>
+      <if test="commentStar != null">
+        COMMENT_STAR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentId != null">
+        #{commentId,jdbcType=NUMERIC},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=NUMERIC},
+      </if>
+      <if test="musicId != null">
+        #{musicId,jdbcType=NUMERIC},
+      </if>
+      <if test="commentTime != null">
+        #{commentTime,jdbcType=DATE},
+      </if>
+      <if test="commentContent != null">
+        #{commentContent,jdbcType=NVARCHAR},
+      </if>
+      <if test="commentStar != null">
+        #{commentStar,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lanqiao.entity.Comment">
+    update COMMENTS
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=NUMERIC},
+      </if>
+      <if test="musicId != null">
+        MUSIC_ID = #{musicId,jdbcType=NUMERIC},
+      </if>
+      <if test="commentTime != null">
+        COMMENT_TIME = #{commentTime,jdbcType=DATE},
+      </if>
+      <if test="commentContent != null">
+        COMMENT_CONTENT = #{commentContent,jdbcType=NVARCHAR},
+      </if>
+      <if test="commentStar != null">
+        COMMENT_STAR = #{commentStar,jdbcType=NUMERIC},
+      </if>
+    </set>
+    where COMMENT_ID = #{commentId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lanqiao.entity.Comment">
+    update COMMENTS
+    set USER_ID = #{userId,jdbcType=NUMERIC},
+      MUSIC_ID = #{musicId,jdbcType=NUMERIC},
+      COMMENT_TIME = #{commentTime,jdbcType=DATE},
+      COMMENT_CONTENT = #{commentContent,jdbcType=NVARCHAR},
+      COMMENT_STAR = #{commentStar,jdbcType=NUMERIC}
+    where COMMENT_ID = #{commentId,jdbcType=NUMERIC}
+  </update>
+</mapper>

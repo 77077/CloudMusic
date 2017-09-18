@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lanqiao.dao.PlayNumberDao">
+  <resultMap id="PlayNumberResultMap" type="org.lanqiao.entity.PlayNumber">
+    <result column="USER_ID" jdbcType="NUMERIC" property="userId" />
+    <result column="MUSIC_ID" jdbcType="NUMERIC" property="musicId" />
+    <result column="LISTEN_COUNT" jdbcType="NUMERIC" property="listenCount" />
+  </resultMap>
+  <insert id="insert" parameterType="org.lanqiao.entity.PlayNumber">
+    insert into PLAYNUMBER (USER_ID, MUSIC_ID, LISTEN_COUNT
+      )
+    values (#{userId,jdbcType=NUMERIC}, #{musicId,jdbcType=NUMERIC}, #{listenCount,jdbcType=NUMERIC}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.lanqiao.entity.PlayNumber">
+    insert into PLAYNUMBER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="musicId != null">
+        MUSIC_ID,
+      </if>
+      <if test="listenCount != null">
+        LISTEN_COUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=NUMERIC},
+      </if>
+      <if test="musicId != null">
+        #{musicId,jdbcType=NUMERIC},
+      </if>
+      <if test="listenCount != null">
+        #{listenCount,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+</mapper>

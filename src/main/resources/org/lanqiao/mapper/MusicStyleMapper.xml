@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lanqiao.dao.MusicStyleDao">
+  <resultMap id="MusicStyleResultMap" type="org.lanqiao.entity.MusicStyle">
+    <id column="STYLE_ID" jdbcType="NUMERIC" property="styleId" />
+    <result column="STYLE_KIND" jdbcType="NVARCHAR" property="styleKind" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    STYLE_ID, STYLE_KIND
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="MusicStyleResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MUSICSTYLE
+    where STYLE_ID = #{styleId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from MUSICSTYLE
+    where STYLE_ID = #{styleId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="org.lanqiao.entity.MusicStyle">
+    insert into MUSICSTYLE (STYLE_ID, STYLE_KIND)
+    values (#{styleId,jdbcType=NUMERIC}, #{styleKind,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.lanqiao.entity.MusicStyle">
+    insert into MUSICSTYLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="styleId != null">
+        STYLE_ID,
+      </if>
+      <if test="styleKind != null">
+        STYLE_KIND,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="styleId != null">
+        #{styleId,jdbcType=NUMERIC},
+      </if>
+      <if test="styleKind != null">
+        #{styleKind,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lanqiao.entity.MusicStyle">
+    update MUSICSTYLE
+    <set>
+      <if test="styleKind != null">
+        STYLE_KIND = #{styleKind,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where STYLE_ID = #{styleId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lanqiao.entity.MusicStyle">
+    update MUSICSTYLE
+    set STYLE_KIND = #{styleKind,jdbcType=NVARCHAR}
+    where STYLE_ID = #{styleId,jdbcType=NUMERIC}
+  </update>
+</mapper>

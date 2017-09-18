@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lanqiao.dao.SingerKindDao">
+  <resultMap id="SingerKindResultMap" type="org.lanqiao.entity.SingerKind">
+    <id column="SINGER_KIND_ID" jdbcType="NUMERIC" property="singerKindId" />
+    <result column="SINGER_KIND" jdbcType="NVARCHAR" property="singerKind" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SINGER_KIND_ID, SINGER_KIND
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="SingerKindResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SINGERKIND
+    where SINGER_KIND_ID = #{singerKindId,jdbcType=NUMERIC}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from SINGERKIND
+    where SINGER_KIND_ID = #{singerKindId,jdbcType=NUMERIC}
+  </delete>
+  <insert id="insert" parameterType="org.lanqiao.entity.SingerKind">
+    insert into SINGERKIND (SINGER_KIND_ID, SINGER_KIND)
+    values (#{singerKindId,jdbcType=NUMERIC}, #{singerKind,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.lanqiao.entity.SingerKind">
+    insert into SINGERKIND
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="singerKindId != null">
+        SINGER_KIND_ID,
+      </if>
+      <if test="singerKind != null">
+        SINGER_KIND,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="singerKindId != null">
+        #{singerKindId,jdbcType=NUMERIC},
+      </if>
+      <if test="singerKind != null">
+        #{singerKind,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.lanqiao.entity.SingerKind">
+    update SINGERKIND
+    <set>
+      <if test="singerKind != null">
+        SINGER_KIND = #{singerKind,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where SINGER_KIND_ID = #{singerKindId,jdbcType=NUMERIC}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.lanqiao.entity.SingerKind">
+    update SINGERKIND
+    set SINGER_KIND = #{singerKind,jdbcType=NVARCHAR}
+    where SINGER_KIND_ID = #{singerKindId,jdbcType=NUMERIC}
+  </update>
+</mapper>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	  
+	<!-- 配置文件路径 -->
+	<properties resource="mybatis.properties" />
+
+	<!--数据库驱动包路径 -->
+	<classPathEntry location="${drive.class.path}" />
+
+	<context id="MySQLTables" targetRuntime="MyBatis3">
+		<!--关闭注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+			<property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
+		</commentGenerator>
+
+		<!--数据库连接信息 -->
+		<jdbcConnection driverClass="${jdbc.driver}"
+			connectionURL="${jdbc.url}" userId="${jdbc.username}" password="${jdbc.password}">
+		</jdbcConnection>
+
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和 
+			 NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+
+		<!--生成的model 包路径 -->
+		<javaModelGenerator targetPackage="${model.package}"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="ture" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!--生成xml mapper文件 路径 -->
+		<sqlMapGenerator targetPackage="${xml.mapper.package}"
+			targetProject="src/main/resources">
+			<property name="enableSubPackages" value="ture" />
+		</sqlMapGenerator>
+
+		<!-- 生成的Dao接口 的包路径 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="${dao.package}" targetProject="src/main/java">
+			<property name="enableSubPackages" value="ture" />
+		</javaClientGenerator>
+
+		
+
+		<!--对应数据库表名 -->
+		<table tableName="ADDRESS" domainObjectName="Address"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="flase" />
+			<columnOverride column="ADDRESS_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="CITY" javaType="java.lang.String" jdbcType="NVARCHAR" />
+			<columnOverride column="PROVINCE" javaType="java.lang.String" jdbcType="NVARCHAR" />
+		</table>
+		<table tableName="USERS" domainObjectName="User"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="USER_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="USER_NAME" javaType="java.lang.String" jdbcType="NVARCHAR" />
+			<columnOverride column="PASSWORD" javaType="java.lang.String" jdbcType="NVARCHAR" />
+			<columnOverride column="EMAIL" javaType="java.lang.String" jdbcType="NVARCHAR" />
+			<columnOverride column="PHONE_NUMBER" javaType="java.lang.String" jdbcType="NVARCHAR" />
+			<columnOverride column="USER_STATUS" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="USER_LOCK_TIME" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="USER_INFO" javaType="java.lang.String" jdbcType="NVARCHAR" />
+			<columnOverride column="ADDRESS_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="WECHAT" javaType="java.lang.String" jdbcType="NVARCHAR" />
+		</table>
+		<table tableName="MUSIC" domainObjectName="Music"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="MUSIC_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" /> 
+			<columnOverride column="SINGER_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" /> 
+			<columnOverride column="MUSIC_STAR" javaType="java.lang.Integer" jdbcType="NUMERIC" /> 
+			<columnOverride column="LANGUAGE_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" /> 
+			<columnOverride column="STYLE_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="MUSIC_TIME" javaType="java.lang.Double" jdbcType="NUMERIC" />
+			<columnOverride column="MUSIC_NAME" javaType="java.lang.String" jdbcType="NVARCHAR" /> 
+			<columnOverride column="MUSIC_PATH" javaType="java.lang.String" jdbcType="NVARCHAR" /> 
+			<columnOverride column="MUSIC_IMAGE" javaType="java.lang.String" jdbcType="NVARCHAR" /> 
+			<columnOverride column="MUSIC_LRC" javaType="java.lang.String" jdbcType="NVARCHAR" /> 
+		</table>
+		<table tableName="SINGER" domainObjectName="Singer"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="SINGER_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" /> 
+			<columnOverride column="SINGER_AREA_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="SINGER_KIND_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="SINGER_NAME" javaType="java.lang.String" jdbcType="NVARCHAR" /> 
+			<columnOverride column="SINGER_INFO" javaType="java.lang.String" jdbcType="NVARCHAR" /> 
+			<columnOverride column="SINGER_IMAGE" javaType="java.lang.String" jdbcType="NVARCHAR" /> 
+		</table>
+		<table tableName="SINGERAREA" domainObjectName="SingerArea"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="SINGER_AREA_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="SINGER_AREA" javaType="java.lang.String" jdbcType="NVARCHAR" /> 
+		</table>
+		<table tableName="SINGERKIND" domainObjectName="SingerKind"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="SINGER_KIND_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="SINGER_KIND" javaType="java.lang.String" jdbcType="NVARCHAR" /> 
+		</table>
+		<table tableName="MUSICLANGUAGE" domainObjectName="MusicLanguage"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="LANGUAGE_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="LANGUAGE_KIND" javaType="java.lang.String" jdbcType="NVARCHAR" /> 
+		</table>
+		<table tableName="MUSICSTYLE" domainObjectName="MusicStyle"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="STYLE_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="STYLE_KIND" javaType="java.lang.String" jdbcType="NVARCHAR" /> 
+		</table>
+		<table tableName="COMMENTS" domainObjectName="Comment"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="COMMENT_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="USER_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="MUSIC_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="COMMENT_STAR" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="COMMENT_CONTENT" javaType="java.lang.String" jdbcType="NVARCHAR" /> 
+		</table>
+		<table tableName="MUSICLIST" domainObjectName="MusicList"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="USER_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="MUSIC_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+		</table>
+		<table tableName="PLAYNUMBER"  domainObjectName="PlayNumber"
+			enableCountByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" enableUpdateByExample="false">
+			<property name="useActualColumnNames" value="false" />
+			<columnOverride column="USER_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="MUSIC_ID" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+			<columnOverride column="LISTEN_COUNT" javaType="java.lang.Integer" jdbcType="NUMERIC" />
+		</table>
+		
+		<!-- 		<table tableName="msgboard" domainObjectName="Msg"
+				enableCountByExample="false" enableDeleteByExample="false"
+				enableSelectByExample="false" enableUpdateByExample="false">
+				如果设置为true，生成的entity类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE_Time，生成的属性名字就是BORN_DATE,而不会是bornDateTime
+				<property name="useActualColumnNames" value="true" />
+				忽略列，不生成bean 字段
+				<ignoreColumn column="FRED" />
+				指定列的java数据类型
+				<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+			</table> -->
+		
+		
+		
+	</context>
+</generatorConfiguration>
