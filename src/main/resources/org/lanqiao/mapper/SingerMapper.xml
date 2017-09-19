@@ -6,9 +6,24 @@
     <result column="SINGER_NAME" jdbcType="NVARCHAR" property="singerName" />
     <result column="SINGER_INFO" jdbcType="NVARCHAR" property="singerInfo" />
     <result column="SINGER_IMAGE" jdbcType="NVARCHAR" property="singerImage" />
-    <result column="SINGER_AREA_ID" jdbcType="NUMERIC" property="singerAreaId" />
-    <result column="SINGER_KIND_ID" jdbcType="NUMERIC" property="singerKindId" />
+    <!--<result column="SINGER_AREA_ID" jdbcType="NUMERIC" property="singerAreaId" />
+    <result column="SINGER_KIND_ID" jdbcType="NUMERIC" property="singerKindId" />-->
+    <association property="singerArea" resultMap="SingerAreaResultMap"></association>
+    <association property="singerKind" resultMap="SingerKindResultMap"></association>
   </resultMap>
+  <resultMap id="SingerAreaResultMap" type="org.lanqiao.entity.SingerArea">
+    <id column="SINGER_AREA_ID" jdbcType="NUMERIC" property="singerAreaId" />
+    <result column="SINGER_AREA" jdbcType="NVARCHAR" property="singerArea" />
+  </resultMap>
+  <resultMap id="SingerKindResultMap" type="org.lanqiao.entity.SingerKind">
+    <id column="SINGER_KIND_ID" jdbcType="NUMERIC" property="singerKindId" />
+    <result column="SINGER_KIND" jdbcType="NVARCHAR" property="singerKind" />
+  </resultMap>
+  
+  
+  
+  
+  
   <sql id="Base_Column_List">
     SINGER_ID, SINGER_NAME, SINGER_INFO, SINGER_IMAGE, SINGER_AREA_ID, SINGER_KIND_ID
   </sql>

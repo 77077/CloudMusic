@@ -1,5 +1,7 @@
 package org.lanqiao.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Singer {
     private Integer singerId;
 
@@ -9,10 +11,15 @@ public class Singer {
 
     private String singerImage;
 
-    private Integer singerAreaId;
-
-    private Integer singerKindId;
-
+    //private Integer singerAreaId;
+    @Autowired
+	private SingerArea singerArea;
+    
+    //private Integer singerKindId;
+    @Autowired
+	private SingerKind singerKind;
+    
+    
     public Integer getSingerId() {
         return singerId;
     }
@@ -45,19 +52,20 @@ public class Singer {
         this.singerImage = singerImage == null ? null : singerImage.trim();
     }
 
-    public Integer getSingerAreaId() {
-        return singerAreaId;
-    }
+	public SingerArea getSingerArea() {
+		return singerArea;
+	}
 
-    public void setSingerAreaId(Integer singerAreaId) {
-        this.singerAreaId = singerAreaId;
-    }
+	public void setSingerArea(SingerArea singerArea) {
+		this.singerArea = singerArea;
+	}
 
-    public Integer getSingerKindId() {
-        return singerKindId;
-    }
+	public SingerKind getSingerKind() {
+		return singerKind;
+	}
 
-    public void setSingerKindId(Integer singerKindId) {
-        this.singerKindId = singerKindId;
-    }
+	public void setSingerKind(SingerKind singerKind) {
+		this.singerKind = singerKind;
+	}
+
 }

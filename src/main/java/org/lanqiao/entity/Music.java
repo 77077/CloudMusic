@@ -1,103 +1,111 @@
 package org.lanqiao.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Music {
-    private Integer musicId;
+	private Integer musicId;
 
-    private String musicName;
+	private String musicName;
 
-    private Integer singerId;
+	// private Integer singerId;
+	@Autowired
+	private Singer singer;
 
-    private Integer musicStar;
+	private Integer musicStar;
 
-    private String musicPath;
+	private String musicPath;
 
-    private Integer languageId;
+	// private Integer languageId;
+	@Autowired
+	private MusicLanguage musicLanguage;
 
-    private Integer styleId;
+	// private Integer styleId;
+	@Autowired
+	private MusicStyle musicStyle;
 
-    private String musicImage;
+	private String musicImage;
 
-    private String musicLrc;
+	private String musicLrc;
 
-    private Double musicTime;
+	private Double musicTime;
 
-    public Integer getMusicId() {
-        return musicId;
-    }
+	public Integer getMusicId() {
+		return musicId;
+	}
 
-    public void setMusicId(Integer musicId) {
-        this.musicId = musicId;
-    }
+	public void setMusicId(Integer musicId) {
+		this.musicId = musicId;
+	}
 
-    public String getMusicName() {
-        return musicName;
-    }
+	public String getMusicName() {
+		return musicName;
+	}
 
-    public void setMusicName(String musicName) {
-        this.musicName = musicName == null ? null : musicName.trim();
-    }
+	public void setMusicName(String musicName) {
+		this.musicName = musicName == null ? null : musicName.trim();
+	}
 
-    public Integer getSingerId() {
-        return singerId;
-    }
+	public Singer getSinger() {
+		return singer;
+	}
 
-    public void setSingerId(Integer singerId) {
-        this.singerId = singerId;
-    }
+	public void setSinger(Singer singer) {
+		this.singer = singer;
+	}
 
-    public Integer getMusicStar() {
-        return musicStar;
-    }
+	public Integer getMusicStar() {
+		return musicStar;
+	}
 
-    public void setMusicStar(Integer musicStar) {
-        this.musicStar = musicStar;
-    }
+	public void setMusicStar(Integer musicStar) {
+		this.musicStar = musicStar;
+	}
 
-    public String getMusicPath() {
-        return musicPath;
-    }
+	public String getMusicPath() {
+		return musicPath;
+	}
 
-    public void setMusicPath(String musicPath) {
-        this.musicPath = musicPath == null ? null : musicPath.trim();
-    }
+	public void setMusicPath(String musicPath) {
+		this.musicPath = musicPath == null ? null : musicPath.trim();
+	}
 
-    public Integer getLanguageId() {
-        return languageId;
-    }
+	public MusicLanguage getMusicLanguage() {
+		return musicLanguage;
+	}
 
-    public void setLanguageId(Integer languageId) {
-        this.languageId = languageId;
-    }
+	public void setMusicLanguage(MusicLanguage musicLanguage) {
+		this.musicLanguage = musicLanguage;
+	}
 
-    public Integer getStyleId() {
-        return styleId;
-    }
+	public MusicStyle getMusicStyle() {
+		return musicStyle;
+	}
 
-    public void setStyleId(Integer styleId) {
-        this.styleId = styleId;
-    }
+	public void setMusicStyle(MusicStyle musicStyle) {
+		this.musicStyle = musicStyle;
+	}
 
-    public String getMusicImage() {
-        return musicImage;
-    }
+	public String getMusicImage() {
+		return musicImage;
+	}
 
-    public void setMusicImage(String musicImage) {
-        this.musicImage = musicImage == null ? null : musicImage.trim();
-    }
+	public void setMusicImage(String musicImage) {
+		this.musicImage = musicImage == null ? null : musicImage.trim();
+	}
 
-    public String getMusicLrc() {
-        return musicLrc;
-    }
+	public String getMusicLrc() {
+		return musicLrc;
+	}
 
-    public void setMusicLrc(String musicLrc) {
-        this.musicLrc = musicLrc == null ? null : musicLrc.trim();
-    }
+	public void setMusicLrc(String musicLrc) {
+		this.musicLrc = musicLrc == null ? null : musicLrc.trim();
+	}
 
-    public Double getMusicTime() {
-        return musicTime;
-    }
+	public Double getMusicTime() {
+		return musicTime;
+	}
 
-    public void setMusicTime(Double musicTime) {
-        this.musicTime = musicTime;
-    }
+	public void setMusicTime(Double musicTime) {
+		this.musicTime = musicTime;
+	}
 }

@@ -4,24 +4,48 @@
   <resultMap id="MusicResultMap" type="org.lanqiao.entity.Music">
     <id column="MUSIC_ID" jdbcType="NUMERIC" property="musicId" />
     <result column="MUSIC_NAME" jdbcType="NVARCHAR" property="musicName" />
-    <result column="SINGER_ID" jdbcType="NUMERIC" property="singerId" />
+    <!--<result column="SINGER_ID" jdbcType="NUMERIC" property="singerId" />-->
     <result column="MUSIC_STAR" jdbcType="NUMERIC" property="musicStar" />
     <result column="MUSIC_PATH" jdbcType="NVARCHAR" property="musicPath" />
-    <result column="LANGUAGE_ID" jdbcType="NUMERIC" property="languageId" />
-    <result column="STYLE_ID" jdbcType="NUMERIC" property="styleId" />
+    <!--<result column="LANGUAGE_ID" jdbcType="NUMERIC" property="languageId" />
+    <result column="STYLE_ID" jdbcType="NUMERIC" property="styleId" />-->
     <result column="MUSIC_IMAGE" jdbcType="NVARCHAR" property="musicImage" />
     <result column="MUSIC_LRC" jdbcType="NVARCHAR" property="musicLrc" />
     <result column="MUSIC_TIME" jdbcType="NUMERIC" property="musicTime" />
+    <association property="singer" resultMap="SingerResultMap"></association>
+    <association property="musicLanguage" resultMap="MusicLanguageResultMap"></association>
+    <association property="musicStyle" resultMap="MusicStyleResultMap"></association>
   </resultMap>
+  <resultMap id="SingerResultMap" type="org.lanqiao.entity.Singer">
+    <id column="SINGER_ID" jdbcType="NUMERIC" property="singerId" />
+    <result column="SINGER_NAME" jdbcType="NVARCHAR" property="singerName" />
+    <result column="SINGER_INFO" jdbcType="NVARCHAR" property="singerInfo" />
+    <result column="SINGER_IMAGE" jdbcType="NVARCHAR" property="singerImage" />
+    <result column="SINGER_AREA_ID" jdbcType="NUMERIC" property="singerAreaId" />
+    <result column="SINGER_KIND_ID" jdbcType="NUMERIC" property="singerKindId" />
+  </resultMap>
+  <resultMap id="MusicLanguageResultMap" type="org.lanqiao.entity.MusicLanguage">
+    <id column="LANGUAGE_ID" jdbcType="NUMERIC" property="languageId" />
+    <result column="LANGUAGE_KIND" jdbcType="NVARCHAR" property="languageKind" />
+  </resultMap>
+  <resultMap id="MusicStyleResultMap" type="org.lanqiao.entity.MusicStyle">
+    <id column="STYLE_ID" jdbcType="NUMERIC" property="styleId" />
+    <result column="STYLE_KIND" jdbcType="NVARCHAR" property="styleKind" />
+  </resultMap>
+  
+  
+  
+  
+  
+  
+  
   <sql id="Base_Column_List">
     MUSIC_ID, MUSIC_NAME, SINGER_ID, MUSIC_STAR, MUSIC_PATH, LANGUAGE_ID, STYLE_ID, MUSIC_IMAGE, 
     MUSIC_LRC, MUSIC_TIME
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="MusicResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from MUSIC
-    where MUSIC_ID = #{musicId,jdbcType=NUMERIC}
+    select m.*,s.singer_name,s.singer_info,s.singer_info,s.singer_image from MUSIC m,Singer s where m.singer_id = s.singer_id 
+    and MUSIC_ID = #{musicId,jdbcType=NUMERIC}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from MUSIC

@@ -12,12 +12,23 @@
     <result column="STATUS_CHANGE_TIME" jdbcType="DATE" property="statusChangeTime" />
     <result column="USER_LOCK_TIME" jdbcType="NUMERIC" property="userLockTime" />
     <result column="USER_INFO" jdbcType="NVARCHAR" property="userInfo" />
-    <result column="ADDRESS_ID" jdbcType="NUMERIC" property="addressId" />
+   <!-- <result column="ADDRESS_ID" jdbcType="NUMERIC" property="addressId" />-->
     <result column="WECHAT" jdbcType="NVARCHAR" property="wechat" />
+    <association property="address" resultMap="AddressResultMap"></association>
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.lanqiao.entity.User">
+  <resultMap extends="UserResultMap" id="ResultMapWithBLOBs" type="org.lanqiao.entity.User">
     <result column="USER_IMAGE" jdbcType="BLOB" property="userImage" />
   </resultMap>
+  <resultMap id="AddressResultMap" type="org.lanqiao.entity.Address">
+    <id column="ADDRESS_ID" jdbcType="NUMERIC" property="addressId" />
+    <result column="PROVINCE" jdbcType="NVARCHAR" property="province" />
+    <result column="CITY" jdbcType="NVARCHAR" property="city" />
+  </resultMap>
+  
+  
+  
+  
+  
   <sql id="Base_Column_List">
     USER_ID, USER_NAME, PASSWORD, EMAIL, PHONE_NUMBER, BIRTHDAY, USER_STATUS, STATUS_CHANGE_TIME, 
     USER_LOCK_TIME, USER_INFO, ADDRESS_ID, WECHAT

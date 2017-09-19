@@ -6,6 +6,15 @@
     <result column="PROVINCE" jdbcType="NVARCHAR" property="province" />
     <result column="CITY" jdbcType="NVARCHAR" property="city" />
   </resultMap>
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <sql id="Base_Column_List">
     ADDRESS_ID, PROVINCE, CITY
   </sql>

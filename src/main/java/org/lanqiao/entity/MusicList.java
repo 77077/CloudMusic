@@ -1,23 +1,31 @@
 package org.lanqiao.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class MusicList {
-    private Integer userId;
+    //private Integer userId;
+	@Autowired
+	private User user;
+	
+    //private Integer musicId;
+	@Autowired
+	private Music music;
 
-    private Integer musicId;
+	public User getUser() {
+		return user;
+	}
 
-    public Integer getUserId() {
-        return userId;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+	public Music getMusic() {
+		return music;
+	}
 
-    public Integer getMusicId() {
-        return musicId;
-    }
+	public void setMusic(Music music) {
+		this.music = music;
+	}
+	
 
-    public void setMusicId(Integer musicId) {
-        this.musicId = musicId;
-    }
 }
